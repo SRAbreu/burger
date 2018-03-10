@@ -1,0 +1,63 @@
+
+<div class="content cntr">
+
+  <div class="container txt-cntr"><img src="assets/img/burger2.jpg"></div>
+  <div class="container">
+    <div class="burger-holder" id="uneaten">
+      <ul>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+
+            <li>
+              {{this.id}}. {{this.burger_name}}
+              <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit">Devour It!</button>
+              </form>
+            </li>
+
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="burger-holder" id="eaten">
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.id}}. {{this.burger_name}}
+              <!--the 2 forms below are a workaround the lack of a FE js file in this project  -->
+              <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST">
+              <!-- the above method="POST" was supposed to be PUT but HTML 5 doesnt support it -->
+                <input type="hidden" name="devoured" value="false">
+                <button type="submit">Send it back!</button>
+              </form>
+              <form action="/api/burgers/{{this.id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="devoured" value="false">
+                <button type="submit">Delete!</button>
+              </form>
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+    <div class="container clear txt-cntr" id="create_burger">
+      <div class="form-group">
+        <form class="create-update-form" action="/api/burgers" method="POST">
+
+          <textarea id="ca" name="burger_name"></textarea></br>
+
+          <button type="submit">Add Burger</button>
+        </form>
+      </div>
+      <p>Enter a burger you want to eat and click the "Add Burger" button above.</p>
+    </div>
+
+  <div id="co">
+      <p>Ground Hog, Double Bacon, Bison Bite, Mean Ostritch, Wild Boar</p>
+  </div>
+
+  </div>
+</div>
