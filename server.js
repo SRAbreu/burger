@@ -2,12 +2,15 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var methodOverride = require('method-override');
 
 //Port: both regualar and for heroku
 var PORT = process.env.PORT || 3000;
 
 //creating the Express app instance
 var app = express();
+//To override html (doenst accept PUT & DELETE)
+app.use(methodOverride('_method'))
 // Serve static content for the app from the "public" directory in the application directory
 app.use(express.static("public"));
 //Setting up the Espress app to handle data parsing (parse application/x-www-form-urlencoded)

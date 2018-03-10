@@ -35,7 +35,7 @@ router.post("/api/burgers", function(req, res) {
 //this was supposed to be a PUT but HTML 5 doesn't support it, so this is a workaround.
 //since the instructions of the activ doesn't have a FE js file, I did everything on the html side,
 //instead of creating a jquery file to handle the PUT & DELETE to the html.
-router.post("/api/burgers/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
@@ -54,10 +54,10 @@ router.post("/api/burgers/:id", function(req, res) {
   });
 });
 //this was supposed to be a DELETE but HTML 5 doesn't support it, so this is a workaround.
-router.post("/api/burgers/:id:_method?", function(req, res) {
+router.delete("/api/burgers/:id", function(req, res) {
   //_method is also part of the workaround (see index.handlebars)
   var condition = "id = " + req.params.id;
-console.log(req.params._method);
+  console.log("in delete route", req.params._method);
   burgerv.delete(condition, function(result) {
     if (result.affectedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
