@@ -1,3 +1,3 @@
 # burger
 
-### This is a burger logger built using MySQL, Node, Express, & ORM.
+### This is a burger logger app built using MySQL, Node, Express, & ORM.
